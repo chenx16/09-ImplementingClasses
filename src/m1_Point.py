@@ -28,11 +28,11 @@ def main():
 ###############################################################################
 
 # -----------------------------------------------------------------------------
-# TODO: 2.          With your instructor, READ THE INSTRUCTIONS in
-# TODO (continued)  in file  m0_INSTRUCTIONS.txt, asking questions as needed.
+# done: 2.          With your instructor, READ THE INSTRUCTIONS in
+# done (continued)  in file  m0_INSTRUCTIONS.txt, asking questions as needed.
 #
-# TODO (continued): Then implement a class called   Point that has NO METHODS
-# TODO (continued)  yet, just the lines that start the definition of any class:
+# done (continued): Then implement a class called   Point that has NO METHODS
+# done (continued)  yet, just the lines that start the definition of any class:
 #
 #      class NAME_OF_CLASS(object):
 #          """ Brief description of what objects of the class 'are'."""
@@ -53,7 +53,10 @@ class Point(object):
         self.xs=x
         self.ys=y
         self.distance=0
-        
+        self.xd=x
+        self.yd=y
+
+
     def __repr__(self):
         return  "Point({},{})".format (self.x,self.y)
 
@@ -61,16 +64,22 @@ class Point(object):
         return Point(self.x,self.y)
 
     def move_to(self,x1,y1):
+        self.xd = self.x
+        self.yd = self.y
         self.x=x1
         self.y=y1
         self.n0=self.n0+1
-        self.distance=self.distance+math.sqrt((self.xs-self.x)**2+(self.ys-self.y)**2)
+        self.distance=self.distance+\
+                      math.sqrt((self.xd-self.x)**2+(self.yd-self.y)**2)
 
-    def move_by(self,x2,y2):
+    def move_by(self,x2,y2,):
+        self.xd = self.x
+        self.yd = self.y
         self.x=self.x+x2
         self.y=self.y+y2
         self.n0=self.n0+1
-        self.distance = self.distance+math.sqrt((self.xs - self.x) ** 2 + (self.ys - self.y) ** 2)
+        self.distance = self.distance+\
+                        math.sqrt((self.xd - self.x) ** 2 + (self.yd - self.y) ** 2)
     def get_number_of_moves_made(self):
         return self.n0
 
@@ -84,9 +93,7 @@ class Point(object):
         return self.distance
 
     def get_distance_traveled(self):
-        x5 = (self.xs - self.x) ** 2
-        y5 = (self.ys - self.y) ** 2
-        return math.sqrt(x5 + y5)
+        return self.distance
 
     def closer_to(self,p2,p3):
         x6=(p2.x-self.x)**2
@@ -910,7 +917,7 @@ def run_test_get_distance_traveled():
         print('Actual:', p4.get_distance_traveled())
     """
     # -------------------------------------------------------------------------
-    # TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
+    # done: 11.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_traveled  method specified above.
     # -------------------------------------------------------------------------
     print()
